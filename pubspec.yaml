@@ -1,0 +1,21 @@
+name: flutter_ios_dark_mode
+description: Flutter plugin for getting iOS 13 Dark Mode current enabled state
+version: 0.0.1
+author: vanelizarov<elizarov.vanya@gmail.com>
+homepage: https://github.com/vanelizarov/flutter_ios_dark_mode
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    androidPackage: com.vanelizarov.flutter_ios_dark_mode
+    pluginClass: FlutterIosDarkModePlugin
