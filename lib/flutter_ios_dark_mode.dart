@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 class FlutterIosDarkMode {
   factory FlutterIosDarkMode() {
     if (_instance == null) {
-      final MethodChannel methodChannel =
-          const MethodChannel('com.vanelizarov.flutter_ios_dark_mode/single_check');
-      final EventChannel eventChannel =
-          const EventChannel('com.vanelizarov.flutter_ios_dark_mode/change_stream');
+      final MethodChannel methodChannel = const MethodChannel(
+          'com.vanelizarov.flutter_ios_dark_mode/single_check');
+      final EventChannel eventChannel = const EventChannel(
+          'com.vanelizarov.flutter_ios_dark_mode/change_stream');
       _instance = FlutterIosDarkMode._(methodChannel, eventChannel);
     }
     return _instance;
@@ -25,13 +25,16 @@ class FlutterIosDarkMode {
 
   Stream<bool> get onDarkModeStateChanged {
     if (_onDarkModeStateChanged == null) {
-      _onDarkModeStateChanged =
-          _eventChannel.receiveBroadcastStream().map<bool>((enabled) => enabled);
+      _onDarkModeStateChanged = _eventChannel
+          .receiveBroadcastStream()
+          .map<bool>((enabled) => enabled);
     }
 
     return _onDarkModeStateChanged;
   }
 
-  Future<bool> get darkModeEnabled =>
-      _methodChannel.invokeMethod('checkDarkModeEnabled').then<bool>((enabled) => enabled);
+  Future<bool> get darkModeEnabled => _methodChannel
+      .invokeMethod('checkDarkModeEnabled')
+      .then<bool>((enabled) => enabled)
+      .catchError((onError) => false);
 }
